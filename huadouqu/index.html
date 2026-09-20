@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="花都区综合服务平台，提供花都旅游攻略、美食推荐、交通指南、政务资讯及最新楼盘信息，全面了解花都生活与发展的权威门户。">
+    <meta name="keywords" content="花都,广州花都,花都区旅游,花都美食,花都交通,花都新闻,花都房产">
+    <title>花都-广州花都旅游生活与政务资讯门户</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #fca311;
+            --bg-light: #f8f9fa;
+            --text-dark: #212529;
+            --text-gray: #6c757d;
+            --border-color: #dee2e6;
+            --spacing-unit: 16px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #fff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background: #f1f3f5;
+            font-size: 13px;
+            color: var(--text-gray);
+            padding: 8px 0;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-header {
+            padding: 16px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-color);
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--text-dark);
+            font-weight: 400;
+            font-size: 18px;
+            margin-left: 5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-menu a {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-dark);
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .nav-menu a.active, .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after, .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .search-box {
+            display: flex;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .search-box input {
+            border: none;
+            padding: 8px 12px;
+            outline: none;
+            font-size: 14px;
+            width: 200px;
+        }
+
+        .search-box button {
+            background: var(--primary-color);
+            border: none;
+            color: #fff;
+            padding: 0 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .search-box button:hover {
+            background: #004494;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 450px;
+            background: linear-gradient(135deg, #0056b3 0%, #003d80 100%);
+            display: flex;
+            align-items: center;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: #000;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .hero-btn:hover {
+            background: #e59400;
+            transform: translateY(-2px);
+        }
+
+        /* Quick Nav */
+        .quick-nav {
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+            margin-bottom: 40px;
+        }
+
+        .quick-nav-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .quick-item {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .quick-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .quick-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .quick-title {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 12px;
+        }
+
+        .section-more {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .news-item {
+            display: flex;
+            gap: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .news-date {
+            background: #e9ecef;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-align: center;
+            min-width: 60px;
+            height: fit-content;
+        }
+
+        .news-date .day {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+            line-height: 1.2;
+        }
+
+        .news-date .month {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        .news-content h3 {
+            font-size: 16px;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .news-content p {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .sidebar-news h4 {
+            font-size: 16px;
+            margin-bottom: 16px;
+            padding-left: 10px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .sidebar-news li {
+            margin-bottom: 12px;
+            padding-left: 10px;
+            border-left: 2px solid #eee;
+        }
+
+        .sidebar-news li:hover {
+            border-left-color: var(--primary-color);
+        }
+
+        .sidebar-news a {
+            font-size: 14px;
+            color: var(--text-dark);
+        }
+
+        .sidebar-news a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Attractions */
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .card-img {
+            height: 180px;
+            background-color: #eee;
+            position: relative;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .card-body {
+            padding: 16px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-gray);
+            border-top: 1px solid #f0f0f0;
+            padding-top: 12px;
+        }
+
+        /* Transport */
+        .transport-wrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .transport-info {
+            background: var(--bg-light);
+            padding: 24px;
+            border-radius: 8px;
+        }
+
+        .transport-info h3 {
+            margin-bottom: 16px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .transport-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .transport-icon {
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .transport-text h4 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .transport-text p {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        /* FAQ */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .faq-item {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .faq-answer {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #ccc;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .footer-desc {
+            font-size: 14px;
+            line-height: 1.8;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .news-grid, .attractions-grid, .transport-wrapper, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                height: 350px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .nav-menu {
+                display: none; /* Simplified for mobile demo */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .quick-nav-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero {
+                height: auto;
+                padding: 40px 0;
+            }
+            
+            .hero-bg {
+                position: relative;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="location">📍 广东省广州市花都区</div>
+            <div class="links">
+                <a href="#">网站地图</a> | <a href="#">关于我们</a> | <a href="#">联系客服</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="main-header">
+                <a href="#" class="logo">花都<span>HUADU</span></a>
+                <nav class="nav-menu">
+                    <a href="#" class="active">首页</a>
+                    <a href="#">旅游攻略</a>
+                    <a href="#">美食推荐</a>
+                    <a href="#">交通指南</a>
+                    <a href="#">房产资讯</a>
+                    <a href="#">政务公开</a>
+                </nav>
+                <div class="search-box">
+                    <input type="text" placeholder="搜索花都资讯...">
+                    <button type="button">搜索</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Using a generic scenic placeholder -->
+        <img src="https://picsum.photos/seed/huadu_scenery/1920/600.jpg" alt="花都风景" class="hero-bg">
+        <div class="container">
+            <div class="hero-content">
+                <h1>品味花都风情，探索宜居新城</h1>
+                <p>花都区作为广州北大门，拥有丰富的自然生态资源与深厚的历史文化底蕴。从流溪河畔的生态绿道到千年古村的静谧时光，这里为您提供最全面的本地生活指南。</p>
+                <a href="#" class="hero-btn">开始探索</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Nav -->
+    <div class="container quick-nav">
+        <div class="quick-nav-grid">
+            <div class="quick-item">
+                <span class="quick-icon">🏞️</span>
+                <div class="quick-title">景点门票</div>
+            </div>
+            <div class="quick-item">
+                <span class="quick-icon">🍜</span>
+                <div class="quick-title">花都美食</div>
+            </div>
+            <div class="quick-item">
+                <span class="quick-icon">🚗</span>
+                <div class="quick-title">交通出行</div>
+            </div>
+            <div class="quick-item">
+                <span class="quick-icon">🏠</span>
+                <div class="quick-title">楼盘房产</div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        
+        <!-- News Section -->
+        <section class="section">
+            <div class="news-grid">
+                <div class="news-content">
+                    <div class="section-header">
+                        <h2 class="section-title">花都要闻</h2>
+                        <a href="#" class="section-more">查看更多 &raquo;</a>
+                    </div>
+                    <div class="news-list">
+                        <article class="news-item">
+                            <div class="news-date">
+                                <span class="day">15</span>
+                                <span class="month">10月</span>
+                            </div>
+                            <div class="news-content">
+                                <h3>花都区成功举办第XX届国际美妆节，推动产业高质量发展</h3>
+                                <p>本届美妆节吸引了来自全球的知名品牌参展，展示了花都区在美妆产业链上的强大实力与创新能力。</p>
+                            </div>
+                        </article>
+                        <article class="news-item">
+                            <div class="news-date">
+                                <span class="day">14</span>
+                                <span class="month">10月</span>
+                            </div>
+                            <div class="news-content">
+                                <h3>流溪河花都段生态修复工程顺利完工，新增休闲绿道5公里</h3>
+                                <p>市民又多了一处亲近自然的好去处，两岸景观提升后，将成为周末郊游的网红打卡点。</p>
+                            </div>
+                        </article>
+                        <article class="news-item">
+                            <div class="news-date">
+                                <span class="day">12</span>
+                                <span class="month">10月</span>
+                            </div>
+                            <div class="news-content">
+                                <h3>花都区发布最新人才引进政策，提供住房补贴与创业支持</h3>
+                                <p>为吸引高端人才落户，花都区在购房、就业及创业方面推出了多项实质性优惠政策。</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <aside>
+                    <div class="sidebar-news">
+                        <h4>热门话题</h4>
+                        <ul>
+                            <li><a href="#">花都北站交通换乘指南</a></li>
+                            <li><a href="#">清远英德两日游路线推荐</a></li>
+                            <li><a href="#">2024年秋季中小学招生政策</a></li>
+                            <li><a href="#">花都广场灯光秀时间表</a></li>
+                            <li><a href="#">新华镇最新招聘信息汇总</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Attractions Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">热门景点</h2>
+                <a href="#" class="section-more">浏览全部景点 &raquo;</a>
+            </div>
+            <div class="attractions-grid">
+                <article class="card">
+                    <div class="card-img">
+                        <img src="https://picsum.photos/seed/huadu_1/400/300.jpg" alt="圆玄道观">
+                        <span class="card-tag">5A景区</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">圆玄道观</h3>
+                        <p class="card-desc">位于花都区花山镇，是集宗教文化、观光旅游于一体的著名道观，建筑宏伟，气势磅礴。</p>
+                        <div class="card-footer">
+                            <span>📍 花山镇</span>
+                            <span>⭐ 4.8分</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-img">
+                        <img src="https://picsum.photos/seed/huadu_2/400/300.jpg" alt="盘古王公园">
+                        <span class="card-tag">文化地标</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">盘古王公园</h3>
+                        <p class="card-desc">为纪念中华人文始祖盘古而建，园内盘古王墓、盘古庙等建筑群保存完好，文化底蕴深厚。</p>
+                        <div class="card-footer">
+                            <span>📍 花都区狮岭镇</span>
+                            <span>⭐ 4.5分</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-img">
+                        <img src="https://picsum.photos/seed/huadu_3/400/300.jpg" alt="王子山森林公园">
+                        <span class="card-tag">自然生态</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">王子山森林公园</h3>
+                        <p class="card-desc">广州市生态保护区之一，群峰叠翠，溪水潺潺，是徒步探险和避暑纳凉的理想场所。</p>
+                        <div class="card-footer">
+                            <span>📍 花都区梯面镇</span>
+                            <span>⭐ 4.7分</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Transport Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">交通指南</h2>
+            </div>
+            <div class="transport-wrapper">
+                <div class="transport-info">
+                    <h3>🚄 高铁与航空</h3>
+                    <div class="transport-item">
+                        <div class="transport-icon">1</div>
+                        <div class="transport-text">
+                            <h4>广州北站</h4>
+                            <p>京广铁路、广清城际铁路交汇点，可直达北京、武汉、长沙等城市，前往白云机场仅需30分钟。</p>
+                        </div>
+                    </div>
+                    <div class="transport-item">
+                        <div class="transport-icon">2</div>
+                        <div class="transport-text">
+                            <h4>花都机场</h4>
+                            <p>广州白云国际机场扩建后的主要货运基地及部分客运航线所在地，交通便利。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="transport-info">
+                    <h3>🚌 城市公交</h3>
+                    <div class="transport-item">
+                        <div class="transport-icon">3</div>
+                        <div class="transport-text">
+                            <h4>地铁9号线</h4>
+                            <p>贯穿花都中部区域，连接广州北站与白云机场，实现与市区无缝对接。</p>
+                        </div>
+                    </div>
+                    <div class="transport-item">
+                        <div class="transport-icon">4</div>
+                        <div class="transport-text">
+                            <h4>城乡公交网络</h4>
+                            <p>覆盖新华、花山、炭步、狮岭等镇街，票价亲民，是市民出行的首选方式。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">常见问题</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">花都区属于广州市哪个区？</div>
+                    <div class="faq-answer">花都区是广州市的市辖区之一，位于广州市北部，是广州的北大门。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">去花都旅游需要坐高铁吗？</div>
+                    <div class="faq-answer">不一定。如果您想去花都北站或白云机场，高铁非常方便；如果是去花都景点游玩，乘坐地铁9号线或自驾也是很好的选择。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">花都有什么特色美食？</div>
+                    <div class="faq-answer">花都的特色美食包括花都炭步芋头、花都鱼腐、狮岭烧鹅以及各种广式点心。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">在花都买房有什么优势？</div>
+                    <div class="faq-answer">花都区房价相对广州中心区较低，生活成本适中，生态环境好，且随着轨道交通的完善，交通便利性大幅提升。</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="footer-logo">花都门户</a>
+                    <p class="footer-desc">致力于为花都市民及游客提供最及时、最全面的本地资讯与服务。关注花都发展，记录美好瞬间。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速导航</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">旅游指南</a></li>
+                        <li><a href="#">美食地图</a></li>
+                        <li><a href="#">交通时刻表</a></li>
+                        <li><a href="#">政务公开</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">网站简介</a></li>
+                        <li><a href="#">联系方式</a></li>
+                        <li><a href="#">广告服务</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">新浪微博</a></li>
+                        <li><a href="#">抖音号</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 花都区资讯服务平台 版权所有 | 本站内容仅供参考，具体信息请以官方发布为准。</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+  </html>
